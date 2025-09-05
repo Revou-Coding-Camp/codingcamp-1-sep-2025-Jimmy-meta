@@ -1,6 +1,7 @@
 
 /// Variables to store todo items
 let todoList = [];
+let currentFilter = 'all'; // all | completed | uncompleted
 
 /// Function to validate input fields
 function validateInput() {
@@ -29,6 +30,11 @@ function addTodo(todo, dueDate) {
     renderTodoList();
 }
 
+function toggleComplete(index) {
+    todoList[index].completed = !todoList[index].completed;
+    renderTodoList();
+}
+
 function deleteAllTodo() {
     // Clear the todo list array
     todoList = [];
@@ -38,6 +44,9 @@ function deleteAllTodo() {
 }
 
 function filterTodo() {
+    const filterSelect = document.getElementById('filter-select');
+    currentFilter = filterSelect.value;
+    renderTodoList();
 
 }
 
@@ -47,9 +56,24 @@ function renderTodoList() {
     todoListContainer.innerHTML = ''; // Clear existing list
 
     /// Loop through the todoList array and create HTML elements for each item
-    todoList.forEach((item) => {
+    let filteredList = todoList;
+    if (currentFilter === 'completed') {
+        filteredList = todoList.filter(item => item.completed);
+    } else if (currentFilter === 'uncompleted') {
+        filteredList = todoList.filter(item => !item.completed);
+    }
+
+    if (filteredList.length === 0) {
+        todoListContainer.innerHTML = '<p>No Task Found</p>';
+        return;
+    }
+
+    filteredList.forEach((item, idx) => {
         todoListContainer.innerHTML += `
-            <p>${item.task} - Due: ${item.dueDate} </p>
+            <p>
+                <input type="checkbox" onclick="toggleComplete(${idx})" ${item.completed ? 'checked' : ''}>
+                <span style="${item.completed ? 'text-decoration: line-through;' : ''}">${item.task}</span> - Due: ${item.dueDate}
+            </p>
         `;
     });
 }
