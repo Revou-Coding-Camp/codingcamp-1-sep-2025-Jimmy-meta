@@ -1,51 +1,55 @@
 
-///Variables to store to do list items
-let todolist =[];
+/// Variables to store todo items
+let todoList = [];
 
-function ValidateInput() {
-    const taskInput = document.getElementById('todo-input').value;
-    const dateInput = document.getElementById('todo-date-input').value;
+/// Function to validate input fields
+function validateInput() {
+    const todoInput = document.getElementById('todo-input').value;
+    const todoDateInput = document.getElementById('todo-date-input').value;
 
-    if (taskInput === "" ||dateInput === "") {
-        alert("Please fill in both the task and due date.");
+    if (todoInput === '' || todoDateInput === '') {
+        alert('Please fill in both the task and due date.');
     } else {
-        AddTask(taskInput, dateInput);
+        addTodo(todoInput, todoDateInput);
     }
-
 }
 
-function AddTask(todo, duedate) {
+function addTodo(todo, dueDate) {
+    // Add a new todo item to the list
     const todoItem = {
         task: todo,
-        dueDate: duedate,
+        dueDate: dueDate,
         completed: false
     };
-    todolist.push(todoItem);
-    renderTodolist();
+
+    /// Push the new item to the todo list array
+    todoList.push(todoItem);
+
+    /// Re-render the todo list
+    renderTodoList();
 }
 
-function DeleteAllTasks() {
-// Clear the todo list array
-    todolist = [];
+function deleteAllTodo() {
+    // Clear the todo list array
+    todoList = [];
 
-// Re-render the empty list
-    renderTodolist();
+    /// Re-render the todo list
+    renderTodoList();
 }
 
-function FilterTasks() {
+function filterTodo() {
 
-}   
+}
 
-function renderTodoList (){
-    
-//code to render the to do list on the webpage
-    const todoListContainer = document.getElementById('todo-list') 
-    todoListContainer.innerHTML = '';// Clear existing list
+function renderTodoList() {
+    // Code to render the todo list on the webpage
+    const todoListContainer = document.getElementById('todo-list');
+    todoListContainer.innerHTML = ''; // Clear existing list
 
-    // Loop through the todolist array and create list items
-    todolist.forEach((item) => {
+    /// Loop through the todoList array and create HTML elements for each item
+    todoList.forEach((item) => {
         todoListContainer.innerHTML += `
-        <p> ${item.task} - Due: ${item.dueDate} </p>
-      `;
+            <p>${item.task} - Due: ${item.dueDate} </p>
+        `;
     });
 }

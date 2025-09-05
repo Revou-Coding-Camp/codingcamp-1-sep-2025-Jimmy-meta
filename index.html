@@ -24,29 +24,33 @@
 
         <!-- To do Input Section -->
         <section id="to do input section" class="py-[16px]"> 
+           
             <form>
-                <input type="text" class="border-b px-2" id="todo-input" placeholder="Add a new task..." >
-                <input type="date" class="border-b px-2" id="todo-date-input" placeholder="Select due date..." >
-                <button type="button" id="add-button" onclick="ValidateInput();" class="bg-blue-500 text-white px-4 py-2 ">Add</button>
+                 <input type="text" class="border-b p-2" id="todo-input" placeholder="Add a new task...">
+                <input type="date" class="border-b p-2" id="todo-date-input" placeholder="Select due date...">
+                <button type="button" id="add-todo-button" onclick="validateInput();"
+                    class="bg-blue-500 text-white px-4 py-2">Add</button>
             </form>
-            
+                
         </section>
 
-        <section class="flex justify-between">
-            <button class="bg-green-500 text-white px-4 py-2 ">
-                Filter Tasks
+
+        <section class="flex justify-between ">
+            <button class="bg-green-500 text-white px-4 py-2">
+                Filter Task
             </button>
 
-            <button class="bg-red-500 text-white px-4 py-2 " onclick="DeleteAllTasks();">
-                Delete All Tasks
+            <button class="bg-red-500 text-white px-4 py-2" id="clear-todo-button" onclick="clearTasks();">
+                Clear All Task
+
             </button>
-            
+
         </section>
 
         <!-- To do List Section -->
         <section class="py-[16px]"> 
           
-            <h2 class="text-2xl text-center font-bold">List of to do</h2> <br>
+            <h2 class="text-2xl text-center font-bold">List of to do</h2> 
             <ul id="todo-list" class="text-center">
                 <p>No added Task Yet</p>
                 
